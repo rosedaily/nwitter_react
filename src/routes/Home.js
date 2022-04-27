@@ -31,7 +31,7 @@ const Home = ({ userObj }) => {
     await dbService.collection("nweets").add({
       text: nweet,
       createdAt: Date.now(),
-      creartorId: userObj.uid,
+      creatorId: userObj.uid,
       attachmentUrl,
     });
     setNweet("");
@@ -84,7 +84,7 @@ const Home = ({ userObj }) => {
       </form>
       <div>
         {nweets.map((nweet) => (
-          <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creartorId === userObj.uid}/>
+          <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid}/>
         ))}
       </div>
     </>
