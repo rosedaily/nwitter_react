@@ -1,9 +1,12 @@
 import { authService, dbService } from 'fbase';
-import { useEffect } from 'react';
+import { useEffect,useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import Nweet from 'components/Nweet';
 
 const Profile = ({ userObj }) =>{
   const history = useHistory();
+  const [nweets, setNweets] = useState([]);
+  
 
   const onLogOutClick = () => {
     authService.signOut();
@@ -18,7 +21,11 @@ const Profile = ({ userObj }) =>{
     .orderBy("createdAt","asc")
     .get();
 
-    console.log(nweets.docs.map((doc) => doc.data()));
+    const newArray = nweets.docs.map((document) => ({
+      id: document.id,
+      ...document.data(),
+    }));
+    setNweets(newArray);
   };
 
   useEffect(() => {
@@ -26,9 +33,16 @@ const Profile = ({ userObj }) =>{
   }, []);
 
   return (
-    <>
-      <button onClick={onLogOutClick}>Log Out</button>
-    </>
+    <div>
+      <div>
+        {nweets.map((nweet) => (
+          <Nweet key={nweet.id} nweetObj={nweet} isOwner={nweet.creatorId === userObj.uid}/>
+        ))}
+      </div>
+      <div>
+        <button onClick={onLogOutClick}>Log Out</button>
+      </div>
+    </div>
   )
 }
 
