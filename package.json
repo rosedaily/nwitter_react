@@ -1,5 +1,5 @@
 {
-  "homepage": "https://github.com/rosedaily/nwitter_react",
+  "homepage": "https://rosedaily.github.io/nwitter_react",
   "name": "nwitter_react",
   "version": "0.1.0",
   "private": true,
@@ -15,7 +15,6 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
     "uuid": "^8.3.2",
-    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -25,8 +24,7 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
-      "react-app/jest"
+      "react-app"
     ]
   },
   "browserslist": {
